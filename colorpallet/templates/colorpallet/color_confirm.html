@@ -1,0 +1,54 @@
+{% extends 'colorpallet/base.html' %}
+
+{% block content %}
+
+<a href="{{request.META.HTTP_REFERER}}">
+  <button class="btn btn-secondary mb-5"  type="button" >戻る</button>
+</a>
+
+ <a href="" id="ss" download="html_ss.jpg">
+ <button class="btn btn-success mb-5 float-right" id="ss" type="button" onclick="getDisplayImage();" >JPEGダウンロード</button>
+</a>
+
+<div id="target" style="background-color:#ffffff;">
+<div class="row" style="margin-left: 0; margin-right: 0;" id='listWithHandle'>
+  {% for item in select_color|dictsort:"name"  %}
+  <div class="item-body2 col-2 col-sm-1" >
+    {% if item.name !=　"#501" %}
+    <div class='content' style='background-color:#{{ item.color_code }};'></div>
+    {% else %}
+    <div class='content' style='background-color:#{{ item.color_code }}; border:1px solid #B3B8BB;'></div>
+    {% endif %}
+    <p class="name">{{ item.name }}</p>
+  </div>
+  {% endfor %}
+</div>
+</div>
+
+
+{% endblock %}
+
+
+
+{% block extrajs %}
+<script>
+window.onload = function getDisplayImage(){
+//  html2canvas(document.getElementById("target"),{
+//    onrendered: function(canvas){
+//      var imgData = canvas.toDataURL("image/jpeg",1.0);
+//      document.getElementById('result').src = imgData;
+//    },
+//  });
+
+  html2canvas(document.getElementById("target"),{
+    onrendered: function(canvas){
+      var imgData = canvas.toDataURL("image/jpeg");
+      document.getElementById("ss").href = imgData;
+    }
+  });
+
+}
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'colorpallet/base.html' %}
+
+
+{% block content %}
+
+<div class="row all_color" id='listWithHandle'>
+    {% for color in queryset|dictsort:"name"  %}
+  <div class="item-body col-2 col-sm-1" >
+      <label class='checkbox' style='cursor:default; opacity:1;'>
+        <p class="index-number">{{ color.index_alphabet }}-{{ color.index_number }}</p>
+        {% if color.name !=　"#501" %}
+        <div class='content' style='background-color:#{{ color.color_code }};'></div>
+        {% else %}
+        <div class='content' style='background-color:#{{ color.color_code }}; border:1px solid #B3B8BB;'></div>
+        {% endif %}
+        <p class="name">{{ color.name }}</p>
+      </label>
+  </div>
+  {% endfor %}
+</div>
+
+
+{% endblock %}
+
+
+{% block extrajs %}
+
+{% endblock %}

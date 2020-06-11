@@ -1,0 +1,66 @@
+{% extends 'colorpallet/base.html' %}
+
+{% block content %}
+
+
+<form id="column-confirm" method='GET' action="{% url 'colorpallet:column_search' %}">
+  <button class="btn" type="submit" ></button>
+  {% csrf_token %}
+
+  <div class="row all_column" style='margin-bottom:10px'>
+    {% for column in column_list|dictsort:"id"  %}
+    <div class='column-body'>
+      <label class='checkbox2'>
+        <input type="checkbox" name="column_tag" value="{{ column.pk }}" class="columnid" id="column{{ column.pk }}">
+        <p class="name2">{{ column.index_alphabet }}</p>
+      </label>
+    </div>
+    {% endfor %}
+  </div>
+</form>
+
+
+<div class="mb-2 mt-4">
+  {% for item in select_column  %}
+  <p class="text-dark">< {{ item.index_alphabet }}列 ></p>
+  {% endfor %}
+</div>
+
+
+<div class="row all_color" id='listWithHandle'>
+  {% for item in queryset|dictsort:"index_number"  %}
+  <div class="item-body2 col-2 col-sm-1" >
+    <p class="index-number">{{ item.index_alphabet }}-{{ item.index_number }}</p>
+    {% if item.name !=　"#501" %}
+    <div class='content' style='background-color:#{{ item.color_code }};'></div>
+    {% else %}
+    <div class='content' style='background-color:#{{ item.color_code }}; border:1px solid #B3B8BB;'></div>
+    {% endif %}
+    <p class="name">{{ item.name }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+
+{% endblock %}
+
+
+
+{% block extrajs %}
+<script>
+
+
+  document.addEventListener('DOMContentLoaded', e => {
+
+    const searchForm = document.getElementById('column-confirm');
+
+    for (const check of document.getElementsByName('column_tag')) {
+      check.addEventListener('change', () => {
+        searchForm.submit();
+      });
+    }
+  });
+
+
+</script>
+{% endblock %}

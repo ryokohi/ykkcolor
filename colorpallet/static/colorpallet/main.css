@@ -1,0 +1,228 @@
+
+.item-body{
+  padding: 3px 0;
+
+}
+
+.item-body2{
+  padding: 3px 4px;
+  cursor: move;
+}
+
+.container{
+  margin-bottom: 50px;
+}
+
+
+.checkbox {
+  width: 100%;
+  cursor:pointer;
+  padding:2px;
+  border: transparent 2px solid ;
+  box-sizing:border-box;
+}
+
+
+
+.checkbox:hover {
+  opacity: 0.6;
+}
+
+.content {
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 0px;
+  /*  border:1px solid #B3B8BB;*/
+  position: relative;
+
+}
+
+
+.name {
+  text-align: center;
+  margin: 7px 0 3px;
+  color: #808080;
+}
+
+
+input[type="checkbox"]{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: none;
+
+}
+
+
+.checkbox.checked{
+  border:2px solid #cccccc;
+  border-radius: 2px;
+  box-sizing:border-box;
+}
+
+
+
+.name2 {
+  margin: 0 2px 0 2px;
+  padding: 0;
+  font-size: 12px;
+}
+
+
+.column-body{
+
+}
+
+.columnid {
+  display: none;
+}
+
+.checkbox2 {
+  cursor:pointer;
+  padding: 0 8px 0 8px;
+  margin: 1px 2px 1px 2px ;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  box-sizing:border-box;
+}
+
+/*
+.checkbox2.checked{
+padding: 0 8px 0 8px;
+margin: 1px 2px 1px 2px ;
+border: 1px solid #cccccc;
+border-radius: 10px;
+box-sizing:border-box;
+background-color: #cccccc;
+}
+*/
+
+.checkbox2:hover {
+  opacity: 0.6;
+}
+
+.all_column {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom:30px
+}
+
+.all_color {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 5px;
+}
+
+.index-number {
+  text-align: center;
+  margin: 2px 0 2px 0;
+  color: #999999;
+  font-size: 10px;
+}
+
+.page-top {
+  width:50px;
+  text-align: center;
+  position: fixed;
+  right:1%;
+  bottom: 20%;
+  z-index: 99;
+  cursor:pointer;
+
+}
+
+.arrow {
+  color:#cccccc;
+  opacity: 0.8;
+  position: relative;
+
+}
+
+.page-top p{
+  position: absolute;
+  font-size: 1px;
+  color:gray;
+  top: 32px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+
+.explain p{
+  margin-bottom: 5px;
+}
+
+.fixedCount{
+  display: block;
+  position: relative;
+  height: 70px;
+  left:0;
+  right:0;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.fixedCount_content {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  padding: 15px 0;
+  background-color: rgba(148,148,148,0.9);
+  color: #fff;
+  z-index: 8999;
+
+}
+
+
+.fixedCount_inner{
+  display: block;
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.fixedCount_column{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.fixedCount_counter{
+  display: block;
+  margin: 0 5px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: .05em;
+  line-height: 1.5;
+}
+
+.fixedCount_confirm{
+  display: block;
+}
+
+
+:root{
+  --font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, "游ゴシック体", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "游ゴシック体", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Helvetica Neue", Helvetica, Arial, "游ゴシック体", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, 'Open Sans', sans-serif;
+}

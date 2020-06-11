@@ -1,0 +1,128 @@
+{% extends 'colorpallet/base.html' %}
+
+
+{% block content %}
+<div class="page-top" id="top_btn">
+  <i class="fas fa-caret-square-up fa-3x arrow">
+    <p >TOP</p></i>
+  </div>
+
+
+  <div class="explain text-muted">
+    <p>①色を複数選択</p>
+    <p>②確認ボタンを押す</p>
+  </div>
+
+  <form id="color-confirm" method='GET' action="{% url 'colorpallet:color_confirm' %}">
+    {% csrf_token %}
+
+    <div class="row all_color" id='listWithHandle'>
+      {% for color in color_list|dictsort:"name"  %}
+      <div class="item-body col-2 col-sm-1" >
+        <label class='checkbox'>
+          <input type="checkbox" name="colors" value="{{ color.pk }}" class="colorid" id="id{{ color.pk }}">
+          <p class="index-number">{{ color.index_alphabet }}-{{ color.index_number }}</p>
+          {% if color.name !=　"#501" %}
+          <div class='content' style='background-color:#{{ color.color_code }};'></div>
+          {% else %}
+          <div class='content' style='background-color:#{{ color.color_code }}; border:1px solid #B3B8BB;'></div>
+          {% endif %}
+          <p class="name">{{ color.name }}</p>
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="fixedCount">
+      <div class="fixedCount_content">
+        <div class="fixedCount_inner">
+          <div class="fixedCount_column">
+            <p class="fixedCount_counter">
+              <span class="fixedCount_value">0個選択中</span>
+            </p>
+            <div class="fixedCount_confirm">
+              <button class="btn btn-dark conf_btn" type="submit" >選択した色を確認する</button>
+            </div>
+          </div>
+          <!--inner-->
+        </div>
+        <!--content-->
+      </div>
+    </div>
+  </form>
+
+
+  {% endblock %}
+
+
+  {% block extrajs %}
+  <script>
+
+$(document).ready(function(){
+  if($('.colorid').prop("checked")){
+    var val = $(this).val();
+    console.log(val);
+    $(this).parent().addClass("checked");
+  }
+});
+
+//チェックボックスにチェックが入ったらcheckedクラスを追加
+$(function(){
+      $(".colorid").on('click',function(){
+        if($(this).prop("checked")){
+          $(this).parent().addClass("checked");
+          var val = $(this).val();
+          var count = $("input[name='colors']:checked").length;
+          $('.fixedCount_value').text(count + '個選択中');
+          console.log(val);
+        } else if (!$(this).prop("checked")){
+          $(this).parent().removeClass("checked");
+          var val = $(this).val();
+          var count = $("input[name='colors']:checked").length;
+          $('.fixedCount_value').text(count + '個選択中');
+          console.log(val);
+        }
+      });
+    });
+
+//検索ボタン押さずにすぐ検索
+    document.addEventListener('DOMContentLoaded', e => {
+
+      const searchForm = document.getElementById('column-confirm');
+
+      for (const check of document.getElementsByName('column_tag')) {
+        check.addEventListener('change', () => {
+          searchForm.submit();
+        });
+      }
+    });
+
+//上に戻るボタン
+    $(function(){
+      $("#top_btn").on('click',function(){
+        $("html,body").animate({scrollTop:0},300,"swing");
+      });
+    });
+
+//選択個数と確認ボタン　フッターの手前で止める
+    $(function(){
+      $(window).on("scroll",function(){
+        scrollHeight = $(document).height(); //ドキュメントの高さ
+        scrollPosition = $(window).height() + $(window).scrollTop(); //現在地
+        footHeight = $("footer").innerHeight(); //footerの高さ（＝止めたい位置）
+        if ( scrollHeight - scrollPosition  <= footHeight ) { //ドキュメントの高さと現在地の差がfooterの高さ以下になったら
+          $(".fixedCount_content").css({
+            "position":"absolute",
+            "bottom": -40
+          });
+          } else {
+            $(".fixedCount_content").css({
+              "position":"fixed",
+              "bottom": "0"
+            });
+          }
+        });
+      });
+
+    </script>
+    {% endblock %}
