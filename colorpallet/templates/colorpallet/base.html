@@ -17,47 +17,49 @@
   <script src="https://kit.fontawesome.com/a233f321ff.js" crossorigin="anonymous"></script>
 
   <style type="text/css">
-      .dropdown:hover > .dropdown-menu {
-          display: block;
-      }
+  .dropdown:hover > .dropdown-menu {
+    display: block;
+  }
+  .nav-link{
+    color: #000000;
+  }
+
   </style>
 
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'colorpallet:index' %}">HOME</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="{% url 'admin:index' %}">探す<span class="sr-only">(current)</span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a class="dropdown-item" href="{% url 'colorpallet:column_search' %}">列で探す</a></li>
-            <li><a class="dropdown-item" href="{% url 'colorpallet:colortype_search' %}">色の系統で探す</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="{% url 'admin:index' %}">管理画面</a>
-        </li>
+  <ul class="nav navbar-light bg-light">
+    <li class='nav-item'>
+      <a class="navbar-brand nav-link  my-2 my-lg-0 " href="{% url 'colorpallet:index' %}">HOME</a>
+    </li>
+    <li class="nav-item dropdown mr-auto">
+      <a class="nav-link dropdown-toggle  my-2 my-lg-0 " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="{% url 'admin:index' %}">探す<span class="sr-only">(current)</span></a>
+      <ul class="dropdown-menu" role="menu">
+        <li><a class="dropdown-item" href="{% url 'colorpallet:column_search' %}">列で探す</a></li>
+        <li><a class="dropdown-item" href="{% url 'colorpallet:colortype_search' %}">色の系統で探す</a></li>
       </ul>
-      <form class="form-inline my-2 my-lg-0" method='GET' action="{% url 'colorpallet:color_search' %}">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name='keyword'>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          {% csrf_token %}
+    </li>
+    {% if user.is_superuser %}
+    <li class="nav-item ">
+      <a class="nav-link " href="{% url 'admin:index' %}">管理画面</a>
+    </li>
+    {% endif %}
+    <li class="nav-item">
+      <form class="form-inline my-2 my-lg-0" id="sform" method='GET' action="{% url 'colorpallet:color_search' %}">
+        <input class="form-control mr-sm-2" id="sbox" type="text" placeholder="色番を入力" aria-label="Search" name='keyword' size="15">
+        <button type="submit" id="sbtn" name="button"><i class="fas fa-search"></i></button>
+        {% csrf_token %}
       </form>
-    </div>
-  </nav>
+    </li>
+  </ul>
 
 
 
   <div class="container">
     <section class='text-center mt-3 mb-5'>
-      <h1 class="mb-3" >YKK カラーパレット</h1>
+      <h1 class="mb-3" >YKK Color Pallete</h1>
       <p class="text-muted mb-0">YKKのカラー見本です。</p>
-      <p class="text-muted">モニタやプリンタによって色の再現性が異なるので参考としてご使用ください。</p>
+      <p class="text-muted">正確には現物カタログを参照ください。</p>
     </section>
 
     {% block content %}
@@ -79,11 +81,13 @@
   {% block extrajs %}{% endblock %}
   <script src="{% static 'colorpallet/Sortable.min.js' %}"></script>
   <script>
-  $(function(){
-    Sortable.create(listWithHandle,{
-      animation: 150,
+  if(!navigator.userAgent.match(/(iPhone|iPad|iPod|Android)/)){
+    $(function(){
+      Sortable.create(listWithHandle,{
+        animation: 150,
+      });
     });
-  });
+  }
 </script>
 </body>
 </html>

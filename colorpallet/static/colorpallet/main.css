@@ -214,15 +214,32 @@ background-color: #cccccc;
 }
 
 
+#sform{
+  position: relative;
+}
+
+#sbtn{
+height:38px;
+position:absolute;
+left:115px;/*アイコン左右の位置調整*/
+top:0;
+background:none;
+color:#666;
+border:none;
+font-size:20px;/*アイコンサイズ*/
+}
+
+
+
 :root{
-  --font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, "游ゴシック体", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  --font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, "Hiragino Kaku Gothic ProN","游ゴシック体", "Yu Gothic", YuGothic, Meiryo, sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, "游ゴシック体", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, 'Open Sans', sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Kaku Gothic ProN","游ゴシック体", "Yu Gothic", YuGothic,  Meiryo, 'Open Sans', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Helvetica Neue", Helvetica, Arial, "游ゴシック体", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, 'Open Sans', sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial,  "Hiragino Kaku Gothic ProN","游ゴシック体", "Yu Gothic", YuGothic, Meiryo, 'Open Sans', sans-serif;
 }
